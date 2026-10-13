@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Arabic101 Assistant</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; }
+        h1 { color: #1e293b; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
+        h2 { color: #2563eb; margin-top: 30px; font-size: 1.3rem;}
+        a { color: #2563eb; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .back-link { display: inline-block; margin-top: 30px; font-weight: bold; padding: 10px 15px; background: #f1f5f9; border-radius: 6px;}
+    </style>
+</head>
+<body>
+    <h1>Privacy Policy for Arabic101 Assistant</h1>
+    <p><strong>Effective Date:</strong> October 2026</p>
+    <p>The <strong>Arabic101 Assistant</strong> extension ("we", "our", or "the extension") is dedicated to enhancing the user experience on the Arabic101 dashboard by providing real-time chat notifications and Google Calendar schedule synchronization. We are deeply committed to protecting your privacy.</p>
+    <p>This Privacy Policy explains what data we collect, how it is used, and how it is protected.</p>
+
+    <h2>1. Information We Collect and How We Use It</h2>
+    <p>The extension operates entirely locally within your browser. It does not transmit your personal data to any of our own servers or third-party databases.</p>
+    
+    <p><strong>A. Arabic101 Extension (Chat & Schedule)</strong></p>
+    <ul>
+        <li><strong>Chat Data:</strong> To provide real-time notifications, the extension reads chat messages and sender avatars directly from the Arabic101 API endpoints (e.g., <code>/chat/loadMessages</code>) using your active browser session. This data is only used to trigger local desktop notifications and render the chat widget. It is never stored permanently outside your local browser cache.</li>
+        <li><strong>Schedule Data:</strong> The extension reads your class schedule (Student/Teacher names, Class times, and Course names) directly from the dashboard's HTML DOM structure when you actively choose to export or sync your schedule.</li>
+    </ul>
+
+    <p><strong>B. Google Account Information</strong></p>
+    <p>If you choose to use the "Sync GCal" feature, the extension will request you to connect your Google Account via Google's secure OAuth 2.0 authorization.</p>
+    <ul>
+        <li><strong>Email Address:</strong> We fetch your Google email address solely to display which account is currently connected within the extension's interface.</li>
+        <li><strong>Calendar Access:</strong> The extension uses this permission strictly to create, update, and delete a dedicated sub-calendar named "Arabic101 Academy Schedule" within your Google Calendar. It does not read, modify, or delete any of your personal calendar events outside of this specific sub-calendar.</li>
+    </ul>
+
+    <h2>2. Data Storage & Security</h2>
+    <ul>
+        <li><strong>Local Storage:</strong> User preferences (such as chat theme, last read message timestamps, and active chat session IDs) are stored locally on your device using Chrome's secure storage API.</li>
+        <li><strong>No External Servers:</strong> We do not own or operate any external databases. Your data flows directly between your browser, the Arabic101 platform, and Google's official APIs.</li>
+    </ul>
+
+    <h2>3. Data Sharing</h2>
+    <p>We <strong>do not</strong> sell, transfer, or trade your Personally Identifiable Information (PII) to outside parties. Your data is strictly used for the core functionality of the extension.</p>
+
+    <h2>4. Google API Services User Data Policy Compliance</h2>
+    <p>Arabic101 Assistant's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+    <p><strong>Specifically:</strong></p>
+    <ul>
+        <li>We only use the requested Google Calendar access to manage the specific "Arabic101 Academy Schedule" sub-calendar.</li>
+        <li>We do not use your Google data for targeted advertising, data brokering, or any other unrelated purposes.</li>
+    </ul>
+
+    <h2>5. Your Rights & Revoking Access</h2>
+    <p>You can revoke the extension's access to your Google Calendar at any time by clicking the "Disconnect" or "Switch Account" button in the extension interface, or by managing your third-party access settings directly in your Google Account Security dashboard.</p>
+
+    <h2>6. Contact Us</h2>
+    <p>If you have any questions regarding this Privacy Policy, you may contact us at: <a href="mailto:adminb@arabic101.org">adminb@arabic101.org</a></p>
+    
+    <a href="index.html" class="back-link">&larr; Back to Homepage</a>
+</body>
+</html>

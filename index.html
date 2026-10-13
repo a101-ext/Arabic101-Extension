@@ -7,44 +7,19 @@
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; }
         h1 { color: #2563eb; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
-        .card { background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6; margin-bottom: 20px;}
+        .card { background: #f8f9fa; padding: 25px; border-radius: 8px; border: 1px solid #dee2e6; margin-bottom: 20px;}
         a { color: #2563eb; text-decoration: none; }
-        a.text-link:hover { text-decoration: underline; }
-        
-        /* Gaya untuk tombol Chrome Web Store */
-        .install-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background-color: #4285f4;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-decoration: none;
-            margin: 15px 0 25px 0;
-            transition: background-color 0.2s;
-        }
-        .install-btn:hover {
-            background-color: #3367d6;
-        }
-        .install-btn img {
-            width: 24px;
-            height: 24px;
-        }
+        a:hover { text-decoration: underline; }
+        .btn { display: inline-block; background-color: #2563eb; color: #ffffff; padding: 12px 20px; border-radius: 6px; font-weight: 600; margin-top: 10px; text-decoration: none; transition: background-color 0.2s;}
+        .btn:hover { background-color: #1d4ed8; text-decoration: none; color: white;}
     </style>
 </head>
 <body>
     <h1>Arabic101 Assistant</h1>
+    
     <div class="card">
-        <p><strong>Arabic101 Assistant</strong> is the official browser extension designed to enhance the productivity of teachers and students at Arabic101 Academy.</p>
-        
-        <!-- Ganti URL_EKSTENSI_ANDA di bawah ini dengan link Chrome Web Store ekstensi Anda -->
-        <a href="URL_EKSTENSI_ANDA" class="install-btn" target="_blank" rel="noopener noreferrer">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Google_Chrome_icon_%28February_2022%29.svg" alt="Chrome Icon">
-            Available on Chrome Web Store
-        </a>
+        <p style="margin-top: 0;"><strong>Arabic101 Assistant</strong> is a browser extension designed to enhance the productivity of teachers and students at Arabic101 Academy.</p>
+        <a href="https://chromewebstore.google.com/detail/gcjclacdblhiddeanmdnhliflgplbmcc" target="_blank" class="btn">Get it on Chrome Web Store</a>
     </div>
 
     <h2>Features</h2>
@@ -57,9 +32,9 @@
     <p>To enable the Schedule Sync feature, this extension requests access to your Google Calendar. This access is strictly used to create and manage a dedicated <strong>"Arabic101 Academy Schedule"</strong> sub-calendar. We do not read, modify, or delete your personal calendar events.</p>
     
     <h2>Privacy Policy</h2>
-    <p>Please read our full privacy policy here: <strong><a href="privacy.html" class="text-link">Privacy Policy</a></strong></p>
+    <p>Please read our full privacy policy here: <strong><a href="privacy.html">Privacy Policy</a></strong></p>
     
     <hr style="margin-top: 40px; opacity: 0.3;">
-    <p><small>&copy; 2026 Arabic101 Academy. All rights reserved.</small></p>
+    <p><small>&copy; 2026 Arabic101 Assistant. All rights reserved.</small></p>
 </body>
 </html>

@@ -30,10 +30,10 @@ The extension allows you to sync your schedule in two fundamentally different wa
 
 *   **Actual Mode (7 Days or 30 Days):** 
     This mode synchronizes exact, date-specific class sessions. It reads the actual history and future projections of your classes day-by-day. 
-    *   *Best for:* Tracking real-time status changes (e.g., if a specific class is marked as `[Canceled]`, `[Absent]`, or `[Attended]` on a particular date) and maintaining an accurate historical log[cite: 17]. 
+    *   *Best for:* Tracking real-time status changes (e.g., if a specific class is marked as `[Canceled]`, `[Absent]`, or `[Attended]` on a particular date) and maintaining an accurate historical log. 
 *   **Regular (Timetable) Mode:** 
     This mode synchronizes your permanent, general weekly schedule template. It reads your base weekly layout and creates infinite **recurring weekly events** in your calendar. 
-    *   *Best for:* Getting a broad, unchanging overview of your general availability and permanent weekly commitments[cite: 17].
+    *   *Best for:* Getting a broad, unchanging overview of your general availability and permanent weekly commitments.
 
 ---
 
@@ -44,7 +44,7 @@ The extension allows you to sync your schedule in two fundamentally different wa
 3. A floating **Sync Schedule** module will appear on your timetable or dashboard home page.
 4. **Choose your Sync Method:**
    * **Automatic (Google Calendar):** Click **Connect Google** and sign in. Ensure you manually check the box to grant calendar access during the authorization step. Select your preferred Calendar Mode, then click **Sync** or enable **Auto-Sync**.
-   * **Manual (Export ICS):** Simply select your Calendar Mode and click **Export ICS**. The system will download your schedule as a file that you can manually import into any calendar app[cite: 17].
+   * **Manual (Export ICS):** Simply select your Calendar Mode and click **Export ICS**. The system will download your schedule as a file that you can manually import into any calendar app.
 
 ## 🔒 Privacy & Security
 The Arabic101 Assistant requires minimal permissions. It only reads the schedule and chat data explicitly displayed on your Arabic101 dashboard to facilitate the calendar sync and chat features. Please refer to our [Privacy Policy](https://a101-ext.github.io/privacy.html) for detailed information.

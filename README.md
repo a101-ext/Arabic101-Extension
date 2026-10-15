@@ -5,7 +5,7 @@
 
 The **Arabic101 Assistant** is a powerful, lightweight Google Chrome extension designed to enhance the experience for teachers and students on the Arabic101 Dashboard. It seamlessly bridges your dashboard schedule with Google Calendar and provides a highly optimized, cross-tab realtime chat interface.
 
-[**Download from Chrome Web Store**](https://chromewebstore.google.com/detail/arabic101-assistant/gcjclacdblhiddeanmdnhliflgplbmcc)
+[**Download from Chrome Web Store**](https://chromewebstore.google.com/detail/arabic101-assistant/gcjclacdblhiddeanmdnhliflgplbmcc) | [**Visit Official Documentation**](https://a101-ext.github.io/Arabic101-Extension/index.html)
 
 ---
 
@@ -47,4 +47,4 @@ The extension allows you to sync your schedule in two fundamentally different wa
    * **Manual (Export ICS):** Simply select your Calendar Mode and click **Export ICS**. The system will download your schedule as a file that you can manually import into any calendar app.
 
 ## 🔒 Privacy & Security
-The Arabic101 Assistant requires minimal permissions. It only reads the schedule and chat data explicitly displayed on your Arabic101 dashboard to facilitate the calendar sync and chat features. Please refer to our [Privacy Policy](https://a101-ext.github.io/privacy.html) for detailed information.
+The Arabic101 Assistant requires minimal permissions. It only reads the schedule and chat data explicitly displayed on your Arabic101 dashboard to facilitate the calendar sync and chat features. Please refer to our official [Privacy Policy](https://a101-ext.github.io/Arabic101-Extension/privacy.html) for detailed information.

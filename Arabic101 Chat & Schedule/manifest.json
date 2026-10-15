@@ -1,0 +1,43 @@
+{
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAspFdrGtc10iyIXEalxjkxNxmDVgIdwNKWhp92YDBYpi58FCMTOElcb6CwQeEkKxZNqVxnLOXeFyYTQRsGsqezK/ZlHJ5WurKph6+gr2uGe5hFSm12Eyeuf7PAkmPjamyLnBUXF0hfEdoZhQ7/m2e31B/qjWxuJ3mIiBZu1Ncyo8g/8awZfV7CdNSEep+asCf2cLnxkNsbKNCYU+YsHp5ofZEmmIiMOZDN6Hh+EN685bK7hu/b05KR8JOFSXk0YPPv9wgX62QfNhzJZsHlKoogPDV/HocIzdYHj7bakR9I4TNwRQuyALLnjiGJCGTD0xWCPbMN3u8DbB865w2m9mUDQIDAQAB",
+  "manifest_version": 3,
+  "name": "Arabic101 Assistant",
+  "version": "1.0.6",
+  "description": "Arabic101 Dashboard Assistant: Chat support and Google Calendar schedule synchronization.",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "permissions": [
+    "identity",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.googleapis.com/*",
+    "https://dashboard.arabic101.org/*"
+  ],
+  "background": {
+    "service_worker": "schedule_background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://dashboard.arabic101.org/*"
+      ],
+      "js": ["schedule_script.js", "chat.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "oauth2": {
+    "client_id": "392874722697-97fbhk0bvd0v4d7smqrdjoek2utdln18.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/calendar",
+      "https://www.googleapis.com/auth/userinfo.email"
+    ]
+  },
+  "action": {
+    "default_icon": "icon48.png",
+    "default_title": "Arabic101 Assistant"
+  }
+}

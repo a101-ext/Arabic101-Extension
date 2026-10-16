@@ -40,7 +40,7 @@ The extension allows you to sync your schedule in two fundamentally different wa
 ## 🚀 Installation & Setup
 
 1. Install the extension from the [Chrome Web Store](https://chromewebstore.google.com/detail/arabic101-assistant/gcjclacdblhiddeanmdnhliflgplbmcc).
-2. Log in to your [Arabic101 Dashboard](https://dashboard.arabic101.org/).
+2. Log in to your [Arabic101 Dashboard](https://academy.arabic101.org/).
 3. A floating **Sync Schedule** module will appear on your timetable or dashboard home page.
 4. **Choose your Sync Method:**
    * **Automatic (Google Calendar):** Click **Connect Google** and sign in. Ensure you manually check the box to grant calendar access during the authorization step. Select your preferred Calendar Mode, then click **Sync** or enable **Auto-Sync**.

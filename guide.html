@@ -12,8 +12,8 @@
             --primary-hover: #1d4ed8;
             --primary-bg: #eff6ff;
             --accent: #eab308;
-            --bg: #ffffff;
-            --bg-alt: #f8fafc;
+            --bg: #f8fafc; /* Changed to slightly gray for card contrast */
+            --bg-alt: #ffffff;
             --card-bg: #ffffff;
             --text-main: #1e293b;
             --text-muted: #64748b;
@@ -38,17 +38,17 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text-main); background-color: var(--bg); transition: background-color 0.3s, color 0.3s; }
-        a { text-decoration: none; color: var(--primary); transition: color 0.2s; }
+        a { text-decoration: none; color: var(--primary); transition: color 0.2s; font-weight: 500; }
         a:hover { color: var(--primary-hover); text-decoration: underline; }
         
         /* Navigation */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 5%; background: var(--bg); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; transition: background-color 0.3s; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 5%; background: var(--bg-alt); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; transition: background-color 0.3s; }
         .logo { text-decoration: none !important; font-size: 1.3rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 10px; letter-spacing: -0.5px; transition: opacity 0.2s; }
         .logo:hover { opacity: 0.85; color: var(--text-main); }
         .logo img { width: 32px; height: 32px; border-radius: 8px; object-fit: cover; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         .nav-links { display: flex; gap: 1.5rem; font-weight: 500; font-size: 0.95rem; align-items: center; }
         .back-to-home { font-size: 0.9rem; color: var(--text-main); border: 1px solid var(--border); padding: 6px 14px; border-radius: 20px; transition: all 0.2s; text-decoration: none !important; }
-        .back-to-home:hover { background: var(--bg-alt); color: var(--text-main); }
+        .back-to-home:hover { background: var(--bg); color: var(--text-main); }
 
         /* Header */
         header { padding: 4rem 5%; text-align: center; background: linear-gradient(135deg, var(--bg-alt) 0%, var(--bg) 100%); border-bottom: 1px solid var(--border); }
@@ -56,21 +56,35 @@
         .subtitle { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
 
         /* Content */
-        main { padding: 4rem 5%; max-width: 800px; margin: 0 auto; }
-        section { margin-bottom: 3rem; }
-        h2 { font-size: 1.75rem; color: var(--text-main); margin-bottom: 1.25rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--border); display: flex; align-items: center; gap: 10px; }
-        h3 { font-size: 1.25rem; color: var(--text-main); margin-top: 1.5rem; margin-bottom: 0.75rem; }
+        main { padding: 3rem 5%; max-width: 850px; margin: 0 auto; }
+        
+        /* Card-based sections to make it less monotonous */
+        section { 
+            background: var(--card-bg); 
+            border: 1px solid var(--border); 
+            border-radius: 16px; 
+            padding: 2.5rem; 
+            margin-bottom: 2rem; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: box-shadow 0.3s;
+        }
+        section:hover { box-shadow: 0 8px 15px rgba(0,0,0,0.05); }
+
+        h2 { font-size: 1.5rem; color: var(--text-main); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 10px; }
+        h3 { font-size: 1.15rem; color: var(--text-main); margin-top: 1.5rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 8px; }
         p { margin-bottom: 1rem; color: var(--text-main); }
         ul, ol { margin-bottom: 1.5rem; padding-left: 1.5rem; color: var(--text-main); }
         li { margin-bottom: 0.5rem; }
-        strong { color: var(--text-main); }
+        li::marker { color: var(--primary); font-weight: bold; }
+        strong { color: var(--text-main); font-weight: 600; }
 
-        .highlight-box { background: var(--bg-alt); border-left: 4px solid var(--primary); padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; }
+        .highlight-box { background: var(--bg); border-left: 4px solid var(--primary); padding: 1.25rem; border-radius: 0 8px 8px 0; margin-top: 1.5rem; margin-bottom: 1rem; }
         .highlight-box.warning { border-left-color: #ef4444; background: rgba(239, 68, 68, 0.05); }
-        .highlight-box.warning p { color: #ef4444; font-weight: 600; }
+        .highlight-box.warning p { color: #ef4444; font-weight: 600; margin: 0; }
         .highlight-box p { margin: 0; color: var(--text-main); }
 
         .tag { display: inline-block; background: var(--border); color: var(--text-main); padding: 2px 8px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; margin: 0 4px; }
+        code { background: var(--border); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 0.9em; }
 
         /* Footer */
         footer { border-top: 1px solid var(--border); padding: 3rem 5%; text-align: center; color: var(--text-muted); background: var(--bg-alt); }
@@ -79,6 +93,7 @@
         @media (max-width: 768px) {
             h1 { font-size: 2rem; }
             .nav-links { display: none; }
+            section { padding: 1.5rem; }
         }
     </style>
 </head>
@@ -95,22 +110,22 @@
     </nav>
 
     <header>
-        <h1>Official User Guide</h1>
-        <p class="subtitle">Everything you need to know about setting up, syncing, and maximizing your Arabic101 Extension.</p>
+        <h1>📖 Official User Guide</h1>
+        <p class="subtitle">Everything you need to know about setting up, syncing, and maximizing your Arabic101 Extension workflow.</p>
     </header>
 
     <main>
         <section id="installation">
-            <h2>1. Installation & Setup</h2>
+            <h2>🚀 1. Installation & Setup</h2>
             <ol>
                 <li>Install the extension from the <a href="https://chromewebstore.google.com/detail/arabic101-assistant/gcjclacdblhiddeanmdnhliflgplbmcc" target="_blank">Chrome Web Store</a>.</li>
                 <li>Log in to your <a href="https://dashboard.arabic101.org/" target="_blank">Arabic101 Dashboard</a>.</li>
-                <li>Navigate to your <strong>Timetable</strong> or <strong>Home</strong> page. A new floating widget labeled "Sync Schedule" will appear on the screen.</li>
+                <li>Navigate to your <strong>Timetable</strong> or <strong>Home</strong> page. A new floating widget labeled "Sync Schedule" will appear on your screen.</li>
             </ol>
         </section>
 
         <section id="google-sync">
-            <h2>2. Syncing to Google Calendar</h2>
+            <h2>📅 2. Syncing to Google Calendar</h2>
             <p>To automatically receive class reminders on your phone or desktop, you need to connect your Google Calendar.</p>
             <ol>
                 <li>Click the <strong>Connect Google</strong> button on the extension widget.</li>
@@ -125,17 +140,17 @@
         </section>
 
         <section id="modes">
-            <h2>3. Understanding Calendar Modes</h2>
+            <h2>⚙️ 3. Understanding Calendar Modes</h2>
             <p>Click the <strong>Gear Icon (⚙️)</strong> in the widget to open the settings. Here, you can choose how your schedule is mapped to your calendar.</p>
             
-            <h3>Actual Mode (7 Days or 30 Days)</h3>
+            <h3>🎯 Actual Mode (7 Days or 30 Days)</h3>
             <p>This mode reads the literal history and future dates of your classes day-by-day. It is highly accurate for real-time changes.</p>
             <ul>
                 <li>It accurately tags past and current classes with statuses like <span class="tag">[Canceled]</span>, <span class="tag">[Absent]</span>, <span class="tag">[Attended]</span>, or <span class="tag">[Ongoing]</span>.</li>
                 <li><strong>Best for:</strong> Teachers and students who want a precise historical log of their day-to-day class attendance.</li>
             </ul>
 
-            <h3>Regular (Timetable) Mode</h3>
+            <h3>🔁 Regular (Timetable) Mode</h3>
             <p>This mode reads your permanent weekly base schedule and creates infinite "recurring weekly events" in Google Calendar.</p>
             <ul>
                 <li>It provides a clean, unchanging overview of your weekly commitments indefinitely into the future.</li>
@@ -144,7 +159,7 @@
         </section>
 
         <section id="auto-sync">
-            <h2>4. Auto-Sync vs Manual Sync</h2>
+            <h2>🔄 4. Auto-Sync vs Manual Sync</h2>
             <p>Once connected to Google, you have two ways to update your calendar:</p>
             <ul>
                 <li><strong>Auto-Sync Background:</strong> Check this box in the settings. The extension will silently update your Google Calendar in the background (every 5 minutes if you leave the Timetable page open, or every hour on other dashboard pages).</li>
@@ -153,18 +168,18 @@
         </section>
 
         <section id="export">
-            <h2>5. Offline Mode (Export ICS)</h2>
+            <h2>💾 5. Offline Mode (Export ICS)</h2>
             <p>If you prefer not to connect your Google Account, or if you use Apple Calendar or Microsoft Outlook, you can use the offline export feature.</p>
             <ol>
                 <li>Click the Gear Icon (⚙️) to select your desired Calendar Mode.</li>
                 <li>Click the gray <strong>Export ICS</strong> button.</li>
                 <li>A file named <code>Arabic101_Schedule_Date.ics</code> will download to your computer.</li>
-                <li>Open this file with your preferred calendar application (Apple Calendar, Outlook, etc.) to import your classes.</li>
+                <li>Open this file with your preferred calendar application to import your classes.</li>
             </ol>
         </section>
 
         <section id="chat">
-            <h2>6. Realtime Chat Widget</h2>
+            <h2>💬 6. Realtime Chat Widget</h2>
             <p>The extension includes a built-in chat bubble at the bottom right of your screen. It allows you to communicate with teachers or students without switching pages.</p>
             <ul>
                 <li><strong>Bandwidth Saver:</strong> If you have multiple Arabic101 tabs open, only ONE tab will connect to the chat server, saving your computer's resources.</li>
@@ -173,7 +188,7 @@
         </section>
 
         <section id="troubleshooting">
-            <h2>7. Troubleshooting & Reset</h2>
+            <h2>🛠️ 7. Troubleshooting & Reset</h2>
             <p>If the extension behaves unexpectedly or the sync fails:</p>
             <ul>
                 <li><strong>Reset Settings:</strong> Click the Gear Icon (⚙️) and click the red <strong>Reset Defaults</strong> button. This will revert the extension back to Actual (7 Days) mode and turn off Auto-Sync.</li>

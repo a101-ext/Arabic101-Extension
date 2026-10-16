@@ -7,45 +7,67 @@
     <meta name="description" content="Privacy Policy for the Arabic101 Assistant Google Chrome Extension.">
     <style>
         :root {
+            /* LIGHT MODE */
             --primary: #2563eb;
             --primary-hover: #1d4ed8;
-            --dark: #0f172a;
-            --light: #f8fafc;
-            --text-main: #334155;
+            --primary-bg: #eff6ff;
+            --accent: #eab308;
+            --bg: #ffffff;
+            --bg-alt: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
             --text-muted: #64748b;
             --border: #e2e8f0;
         }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                /* DARK MODE */
+                --primary: #3b82f6;
+                --primary-hover: #60a5fa;
+                --primary-bg: rgba(59, 130, 246, 0.15);
+                --accent: #facc15;
+                --bg: #121826;
+                --bg-alt: #192132;
+                --card-bg: #1e2536;
+                --text-main: #f8fafc;
+                --text-muted: #94a3b8;
+                --border: #334155;
+            }
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text-main); background-color: #ffffff; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text-main); background-color: var(--bg); transition: background-color 0.3s, color 0.3s; }
         a { text-decoration: none; color: var(--primary); transition: color 0.2s; }
         a:hover { color: var(--primary-hover); text-decoration: underline; }
         
         /* Navigation */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 5%; background: #ffffff; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
-        .logo { font-size: 1.25rem; font-weight: 700; color: var(--dark); display: flex; align-items: center; gap: 8px; }
-        .logo svg { width: 24px; height: 24px; color: var(--primary); }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 5%; background: var(--bg); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; transition: background-color 0.3s; }
+        .logo { text-decoration: none !important; font-size: 1.3rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 10px; letter-spacing: -0.5px; transition: opacity 0.2s; }
+        .logo:hover { opacity: 0.85; color: var(--text-main); }
+        .logo img { width: 32px; height: 32px; border-radius: 8px; object-fit: cover; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         .nav-links { display: flex; gap: 1.5rem; font-weight: 500; font-size: 0.95rem; align-items: center; }
         .back-to-home { font-size: 0.9rem; color: var(--text-main); border: 1px solid var(--border); padding: 6px 14px; border-radius: 20px; transition: all 0.2s; text-decoration: none !important; }
-        .back-to-home:hover { background: var(--light); color: var(--dark); }
+        .back-to-home:hover { background: var(--bg-alt); color: var(--text-main); }
 
         /* Header */
-        header { padding: 4rem 5%; text-align: center; background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%); border-bottom: 1px solid var(--border); }
-        h1 { font-size: 2.5rem; color: var(--dark); line-height: 1.2; margin-bottom: 0.5rem; }
+        header { padding: 4rem 5%; text-align: center; background: linear-gradient(135deg, var(--bg-alt) 0%, var(--bg) 100%); border-bottom: 1px solid var(--border); }
+        h1 { font-size: 2.5rem; color: var(--text-main); line-height: 1.2; margin-bottom: 0.5rem; }
         .last-updated { color: var(--text-muted); font-size: 0.95rem; }
 
         /* Content */
         main { padding: 4rem 5%; max-width: 800px; margin: 0 auto; }
         section { margin-bottom: 2.5rem; }
-        h2 { font-size: 1.5rem; color: var(--dark); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+        h2 { font-size: 1.5rem; color: var(--text-main); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
         p { margin-bottom: 1rem; color: var(--text-main); }
         ul { margin-bottom: 1.5rem; padding-left: 1.5rem; color: var(--text-main); }
         li { margin-bottom: 0.5rem; }
 
-        .highlight-box { background: var(--light); border-left: 4px solid var(--primary); padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; }
-        .highlight-box p { margin: 0; color: var(--dark); font-weight: 500; }
+        .highlight-box { background: var(--bg-alt); border-left: 4px solid var(--primary); padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; }
+        .highlight-box p { margin: 0; color: var(--text-main); font-weight: 500; }
 
         /* Footer */
-        footer { border-top: 1px solid var(--border); padding: 3rem 5%; text-align: center; color: var(--text-muted); background: var(--light); }
+        footer { border-top: 1px solid var(--border); padding: 3rem 5%; text-align: center; color: var(--text-muted); background: var(--bg-alt); }
         .footer-links { margin-top: 1rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
 
         @media (max-width: 768px) {
@@ -57,10 +79,10 @@
 <body>
 
     <nav>
-        <div class="logo">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            Arabic101 Assistant
-        </div>
+        <a href="index.html" class="logo">
+            <img src="https://raw.githubusercontent.com/a101-ext/Arabic101-Extension/main/Arabic101%20Chat%20%26%20Schedule/icon128.png" alt="Logo">
+            <span>Arabic<span style="color: var(--accent);">101</span> Assistant</span>
+        </a>
         <div class="nav-links">
             <a href="index.html" class="back-to-home">&larr; Back to Documentation</a>
         </div>
@@ -108,7 +130,7 @@
             <p>The extension acts as a bridge between two platforms. Therefore, your use of the extension is also subject to the privacy policies of those respective services:</p>
             <ul>
                 <li><a href="https://policies.google.com/privacy" target="_blank">Google Privacy Policy</a></li>
-                <li><a href="https://academy.arabic101.org/" target="_blank">Arabic101 Privacy Policy</a></li>
+                <li>Arabic101 Privacy Policy (Refer to the official Arabic101 website)</li>
             </ul>
         </section>
 

@@ -1,6 +1,6 @@
 # Arabic101 Assistant
 
-![Version](https://img.shields.io/badge/version-1.0.7.1-blue.svg)
+![Version](https://img.shields.io/badge/version-1.1.0.0-blue.svg)
 ![Manifest](https://img.shields.io/badge/Manifest-V3-orange.svg)
 ![Platform](https://img.shields.io/badge/platform-Chrome-green.svg)
 

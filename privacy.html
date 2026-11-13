@@ -63,6 +63,7 @@
         p { margin-bottom: 1rem; color: var(--text-main); }
         ul { margin-bottom: 1.5rem; padding-left: 1.5rem; color: var(--text-main); }
         li { margin-bottom: 0.5rem; }
+        code { background: var(--border); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 0.9em; }
 
         .highlight-box { background: var(--bg-alt); border-left: 4px solid var(--primary); padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; }
         .highlight-box p { margin: 0; color: var(--text-main); font-weight: 500; }
@@ -91,21 +92,23 @@
 
     <header>
         <h1>Privacy Policy</h1>
-        <p class="last-updated">Last Updated: October 2026</p>
+        <p class="last-updated">Last Updated: November 2026 (v1.0.7.1)</p>
     </header>
 
     <main>
         <div class="highlight-box">
-            <p><strong>Short Version:</strong> We respect your privacy. The Arabic101 Assistant extension does not collect, store, or transmit your personal data to any external third-party servers. All data processing happens directly between your browser, the Arabic101 platform, and Google Calendar APIs.</p>
+            <p><strong>Short Version:</strong> We respect your privacy. The Arabic101 Assistant extension does not collect, store, or transmit your personal data to any external third-party servers. All data processing happens directly between your browser, the official Arabic101 platform, and Google Calendar APIs.</p>
         </div>
 
         <section>
-            <h2>1. Information We Access & Collect</h2>
-            <p>To provide its core functionalities, the Arabic101 Assistant extension requests specific permissions and accesses certain data:</p>
+            <h2>1. Information We Access &amp; Browser Permissions</h2>
+            <p>To provide its core functionalities, the Arabic101 Assistant extension requests only the minimum required permissions and accesses specific data:</p>
             <ul>
-                <li><strong>Google Calendar Data (Read & Write):</strong> We request access to your Google Calendar (`https://www.googleapis.com/auth/calendar`) strictly to create, update, and manage the `Arabic101 Academy Schedule` and `Arabic101 Academy Schedule - Logs` sub-calendars. We do not read or modify any of your other personal calendars.</li>
-                <li><strong>Google Account Information:</strong> We request basic profile access (`https://www.googleapis.com/auth/userinfo.email`) solely to display your connected email address within the extension's user interface, letting you know which account is currently syncing.</li>
-                <li><strong>Arabic101 Dashboard Data:</strong> The extension locally reads your class timetable, schedule status, and chat messages directly from the Document Object Model (DOM) of your active `dashboard.arabic101.org` session.</li>
+                <li><strong>Google Calendar Data (<code>identity</code> &amp; Calendar API):</strong> We request OAuth 2.0 access to your Google Calendar (<code>https://www.googleapis.com/auth/calendar</code>) strictly to create, update, and manage the <code>Arabic101 Academy Schedule</code> and <code>Arabic101 Academy Schedule - Logs</code> sub-calendars. We do not read or modify any of your other personal calendars.</li>
+                <li><strong>Google Account Email (<code>userinfo.email</code>):</strong> Used solely to display your connected email address within the extension's user interface, letting you know which account is currently syncing.</li>
+                <li><strong>Arabic101 Dashboard Data (<code>dashboard.arabic101.org</code>):</strong> Using your existing authenticated browser session (without requesting the <code>cookies</code> permission), the extension reads your class timetable, session statuses, notifications archive, enrolled courses/roster, syllabus resources, and chat messages to display them in the popup/standalone UI and synchronize your calendar.</li>
+                <li><strong>Background Scheduling &amp; Parsing (<code>alarms</code> &amp; <code>offscreen</code>):</strong> Used to run periodic background checks for upcoming class reminders, unread chat messages, and optional Google Calendar auto-sync, as well as to parse fetched HTML fragments and play subtle audio notification chimes in Manifest V3.</li>
+                <li><strong>Desktop Alerts (<code>notifications</code>):</strong> Used to display native desktop notifications for upcoming classes, classroom waiting alerts, schedule cancellations, and incoming chat messages when the dashboard tab is closed or minimized.</li>
             </ul>
         </section>
 
@@ -113,22 +116,23 @@
             <h2>2. How We Use Your Information</h2>
             <p>The information accessed by the extension is used exclusively for the following purposes:</p>
             <ul>
-                <li>To synchronize your Arabic101 classes with your Google Calendar.</li>
-                <li>To automatically archive past class sessions into a dedicated log calendar.</li>
-                <li>To enable the realtime, cross-tab chat interface and provide desktop notifications for incoming messages.</li>
+                <li>To display your classes, timetable, alerts archive, and course details inside the extension popup and standalone window.</li>
+                <li>To deliver timely desktop reminders for upcoming classes, waiting alerts, schedule updates, and incoming chat messages.</li>
+                <li>To synchronize your Arabic101 classes with your Google Calendar and archive past sessions into a dedicated log calendar.</li>
+                <li>To enable realtime messaging and teacher classroom management actions directly with the Arabic101 platform.</li>
             </ul>
-            <p><strong>We do not sell, rent, or share your data with any third parties for advertising or tracking purposes.</strong></p>
+            <p><strong>We do not sell, rent, or share your data with any third parties for advertising, analytics, or tracking purposes.</strong></p>
         </section>
 
         <section>
             <h2>3. Data Storage and Security</h2>
-            <p>All temporary data, user preferences (like Auto-Sync toggles or Calendar Modes), and cached chat messages are stored locally on your device using Chrome's `localStorage` and `chrome.storage.local` APIs.</p>
-            <p>Your Google OAuth2 authentication tokens are securely managed by the native Chrome Identity API. The developers of this extension do not have access to your passwords, tokens, or personal Google data.</p>
+            <p>All user preferences (such as UI theme, active profile role, alert toggles, and Google Calendar sync settings) and temporary UI caches (such as today's schedule, weekly timetable, recent alerts, unread chat counts, and unsaved End Class report drafts) are stored strictly locally on your device using Chrome's <code>chrome.storage.local</code> and <code>localStorage</code> APIs.</p>
+            <p>Your Google OAuth 2.0 authentication tokens are securely managed by the native Chrome Identity API. The developers of this extension do not have access to your passwords, tokens, or personal data.</p>
         </section>
 
         <section>
             <h2>4. Third-Party Services</h2>
-            <p>The extension acts as a bridge between two platforms. Therefore, your use of the extension is also subject to the privacy policies of those respective services:</p>
+            <p>The extension acts solely as a client-side bridge between your browser, the Arabic101 dashboard, and Google APIs. Your use of those services is also subject to their respective privacy policies:</p>
             <ul>
                 <li><a href="https://policies.google.com/privacy" target="_blank">Google Privacy Policy</a></li>
                 <li>Arabic101 Privacy Policy (Refer to the official Arabic101 website)</li>
@@ -136,12 +140,12 @@
         </section>
 
         <section>
-            <h2>5. Revoking Access & User Rights</h2>
-            <p>You have full control over your data and permissions. You can stop the synchronization and revoke the extension's access at any time:</p>
+            <h2>5. Revoking Access &amp; User Rights</h2>
+            <p>You have full control over your data and permissions. You can stop synchronization and revoke the extension's access at any time:</p>
             <ul>
-                <li><strong>Within the Extension:</strong> Click "Sign out Google" from the extension's profile menu to remove local access.</li>
-                <li><strong>Via Google Account Settings:</strong> You can permanently revoke the extension's access to your Google Calendar by visiting the <a href="https://myaccount.google.com/permissions" target="_blank">Google Account Permissions page</a> and removing the "Arabic101 Extension".</li>
-                <li><strong>Removing the Extension:</strong> Simply uninstalling the extension from Google Chrome will delete all locally cached data and preferences from your device.</li>
+                <li><strong>Within the Extension:</strong> Click "Sign out Google" from the extension's profile menu to remove local Google OAuth access.</li>
+                <li><strong>Via Google Account Settings:</strong> You can permanently revoke the extension's access to your Google Calendar by visiting the <a href="https://myaccount.google.com/permissions" target="_blank">Google Account Permissions page</a> and removing "Arabic101 Assistant".</li>
+                <li><strong>Removing the Extension:</strong> Uninstalling the extension from Google Chrome immediately deletes all locally cached data and preferences from your device.</li>
             </ul>
         </section>
 

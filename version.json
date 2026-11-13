@@ -1,0 +1,15 @@
+{
+  "name": "Arabic101 Assistant",
+  "version": "1.1.0.0",
+  "releaseDate": "2026-11-13",
+  "description": "Arabic101 Dashboard Assistant: Supporting Arabic101 teachers and students with seamless class management, timetables, class alerts, calendar sync, and chat.",
+  "repoUrl": "https://github.com/a101-ext/Arabic101-Extension",
+  "guideUrl": "https://a101-ext.github.io/Arabic101-Extension/guide.html",
+  "privacyUrl": "https://a101-ext.github.io/Arabic101-Extension/privacy.html",
+  "changelog": [
+    "Full-page desktop layout with sticky top navigation bar and Back-to-Top button",
+    "Interactive 50:50 My Plan tier comparison with tier-specific color themes",
+    "Inline class report details accordion with image & PDF attachment previews",
+    "Persistent last-visited route sync across popup and standalone windows"
+  ]
+}

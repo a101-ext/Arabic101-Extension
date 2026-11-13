@@ -10,7 +10,6 @@
     if (res.ok) data = await res.json();
   } catch (e) {}
 
-  // Fallback otomatis ke manifest.json di GitHub jika version.json gagal dimuat
   if (!data || !data.version) {
     try {
       const mRes = await fetch(`${MANIFEST_FALLBACK_URL}?t=${Date.now()}`, { cache: 'no-store' });
@@ -29,24 +28,37 @@
 
   if (!data || !data.version) return;
 
-  // 1. Update semua elemen berlabel data-a101-version (format: v1.1.0.0)
+  const verRegex = /\b(v?)(\d+\.\d+\.\d+\.\d+)\b/gi;
+  const replaceVer = (_, prefix) => `${prefix || ''}${data.version}`;
+
+  // 1. Update elemen eksplisit (data-a101-version, data-a101-version-raw)
   document.querySelectorAll('[data-a101-version]').forEach(el => {
     el.textContent = `v${data.version}`;
   });
-
-  // 2. Update elemen versi tanpa huruf "v" (format: 1.1.0.0)
   document.querySelectorAll('[data-a101-version-raw]').forEach(el => {
     el.textContent = data.version;
   });
 
-  // 3. Update tanggal rilis
+  // 2. Auto-replace teks versi statis di body text (misal: v1.0.7.1 -> v1.1.0.0)
+  if (document.body) {
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+    let node;
+    while ((node = walker.nextNode())) {
+      const parentTag = node.parentElement?.tagName;
+      if (parentTag === 'SCRIPT' || parentTag === 'STYLE' || parentTag === 'TEXTAREA') continue;
+      if (verRegex.test(node.nodeValue)) {
+        node.nodeValue = node.nodeValue.replace(verRegex, replaceVer);
+      }
+      verRegex.lastIndex = 0; // reset regex state
+    }
+  }
+
+  // 3. Update konten dinamis lainnya (tanggal rilis, nama, deskripsi, changelog)
   if (data.releaseDate) {
     document.querySelectorAll('[data-a101-date]').forEach(el => {
       el.textContent = data.releaseDate;
     });
   }
-
-  // 4. Update nama & deskripsi ekstensi
   if (data.name) {
     document.querySelectorAll('[data-a101-name]').forEach(el => {
       el.textContent = data.name;
@@ -57,8 +69,6 @@
       el.textContent = data.description;
     });
   }
-
-  // 5. Render daftar changelog otomatis jika ada kontainer [data-a101-changelog]
   if (Array.isArray(data.changelog) && data.changelog.length > 0) {
     document.querySelectorAll('[data-a101-changelog]').forEach(ul => {
       ul.innerHTML = data.changelog
@@ -67,8 +77,8 @@
     });
   }
 
-  // 6. Update versi di <title> halaman secara otomatis jika mengandung pola vX.X.X
-  if (/v\d+\.\d+\.\d+(?:\.\d+)?/i.test(document.title)) {
-    document.title = document.title.replace(/v\d+\.\d+\.\d+(?:\.\d+)?/i, `v${data.version}`);
+  // 4. Update judul browser tab
+  if (verRegex.test(document.title)) {
+    document.title = document.title.replace(verRegex, replaceVer);
   }
 })();

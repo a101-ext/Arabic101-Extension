@@ -10,6 +10,7 @@
     "Full-page desktop layout with sticky top navigation bar and Back-to-Top button",
     "Interactive 50:50 My Plan tier comparison with tier-specific color themes",
     "Inline class report details accordion with image & PDF attachment previews",
-    "Persistent last-visited route sync across popup and standalone windows"
+    "Persistent last-visited route sync across popup and standalone windows",
+    "Single Source of Truth versioning system integrated across all documentation pages"
   ]
 }

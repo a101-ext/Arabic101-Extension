@@ -1,262 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/a101-ext/Arabic101-Extension/main/Arabic101%20Chat%20%26%20Schedule/icon128.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arabic101 Assistant Extension</title>
-    <meta name="description" content="The essential Google Chrome companion for Arabic101 students and teachers. Manage classes in popup or standalone mode, get proactive alerts, sync to Google Calendar, and chat in real-time.">
-    <style>
-        :root {
-            /* LIGHT MODE (Academy/Dashboard Theme) */
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --primary-bg: #eff6ff;
-            --accent: #eab308;
-            --success: #10b981;
-            --success-bg: #f0fdf4;
-            --bg: #ffffff;
-            --bg-alt: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            :root {
-                /* DARK MODE */
-                --primary: #3b82f6;
-                --primary-hover: #60a5fa;
-                --primary-bg: rgba(59, 130, 246, 0.15);
-                --accent: #facc15;
-                --success: #10b981;
-                --success-bg: rgba(16, 185, 129, 0.15);
-                --bg: #121826;
-                --bg-alt: #192132;
-                --card-bg: #1e2536;
-                --text-main: #f8fafc;
-                --text-muted: #94a3b8;
-                --border: #334155;
-            }
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text-main); background-color: var(--bg); transition: background-color 0.3s, color 0.3s; }
-        a { text-decoration: none; color: var(--primary); transition: color 0.2s; }
-        a:hover { color: var(--primary-hover); }
-        
-        /* Navigation */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 5%; background: var(--bg); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; transition: background-color 0.3s; }
-        .logo { text-decoration: none !important; font-size: 1.3rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 10px; letter-spacing: -0.5px; transition: opacity 0.2s; }
-        .logo:hover { opacity: 0.85; color: var(--text-main); }
-        .logo img { width: 32px; height: 32px; border-radius: 8px; object-fit: cover; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .nav-links { display: flex; gap: 1.5rem; font-weight: 500; font-size: 0.95rem; align-items: center; }
-        .back-to-portal { font-size: 0.85rem; color: var(--text-muted); border: 1px solid var(--border); padding: 4px 12px; border-radius: 20px; transition: all 0.2s; }
-        .back-to-portal:hover { background: var(--bg-alt); color: var(--text-main); }
-
-        /* Hero Section */
-        header { padding: 5rem 5%; text-align: center; background: linear-gradient(135deg, var(--bg-alt) 0%, var(--bg) 100%); border-bottom: 1px solid var(--border); }
-        .hero-badge { display: inline-block; padding: 4px 12px; background: var(--primary-bg); color: var(--primary); border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1.5rem; }
-        h1 { font-size: 3rem; color: var(--text-main); line-height: 1.2; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
-        .hero-desc { font-size: 1.25rem; color: var(--text-muted); max-width: 720px; margin: 0 auto 2.5rem auto; }
-        .cta-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--primary); color: #ffffff; padding: 14px 28px; border-radius: 8px; font-weight: 600; font-size: 1.1rem; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25); transition: transform 0.2s, background 0.2s; }
-        .cta-btn:hover { background: var(--primary-hover); transform: translateY(-2px); color: #ffffff; }
-
-        /* Sections */
-        section { padding: 5rem 5%; max-width: 1200px; margin: 0 auto; }
-        .section-title { text-align: center; font-size: 2.25rem; color: var(--text-main); margin-bottom: 3rem; }
-        
-        /* Grid Cards */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
-        .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 2.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: box-shadow 0.3s, transform 0.3s; }
-        .card:hover { box-shadow: 0 12px 24px rgba(0,0,0,0.08); transform: translateY(-4px); }
-        .card-icon { width: 48px; height: 48px; background: var(--success-bg); color: var(--success); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
-        .card-icon.blue { background: var(--primary-bg); color: var(--primary); }
-        .card h3 { font-size: 1.25rem; color: var(--text-main); margin-bottom: 1rem; }
-        .card p { color: var(--text-muted); font-size: 0.95rem; }
-
-        /* Modes Explanation Box */
-        .modes-container { display: flex; flex-wrap: wrap; gap: 2rem; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 12px; padding: 3rem; margin-top: 2rem; }
-        .mode-box { flex: 1; min-width: 300px; }
-        .mode-box h4 { font-size: 1.3rem; color: var(--text-main); margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
-        .mode-box p { margin-bottom: 1rem; color: var(--text-muted); }
-        .mode-tags span { display: inline-block; background: var(--border); color: var(--text-main); padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; margin-right: 6px; margin-bottom: 6px; }
-
-        /* Usage Steps */
-        .steps { display: flex; flex-direction: column; gap: 1.5rem; max-width: 800px; margin: 0 auto; }
-        .step { display: flex; gap: 1.5rem; background: var(--card-bg); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border); }
-        .step-num { width: 40px; height: 40px; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; flex-shrink: 0; }
-        .step-content h4 { color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem; }
-        .step-content p { color: var(--text-muted); }
-
-        /* Footer */
-        footer { border-top: 1px solid var(--border); padding: 3rem 5%; text-align: center; color: var(--text-muted); background: var(--bg-alt); }
-        .footer-links { margin-top: 1rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2.25rem; }
-            .hero-desc { font-size: 1.1rem; }
-            .step { flex-direction: column; gap: 1rem; }
-            .modes-container { padding: 1.5rem; }
-            .nav-links { display: none; }
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arabic101 Assistant — v1.1.0.0</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; background: #fffdf5; color: #18191b; margin: 0; padding: 40px 20px; line-height: 1.6; }
+    .container { max-width: 720px; margin: 0 auto; background: #fff; border: 1px solid #e5e4de; border-radius: 16px; padding: 32px; box-shadow: 0 4px 16px rgba(0,0,0,0.05); }
+    .badge { display: inline-block; background: #ffe600; color: #18191b; font-weight: 700; padding: 4px 12px; border-radius: 99px; font-size: 13px; margin-bottom: 12px; }
+    h1 { margin: 0 0 8px; font-size: 28px; }
+    .meta { color: #6f7278; font-size: 14px; margin-bottom: 24px; }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 8px; }
+    .links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+    .btn { text-decoration: none; background: #17181f; color: #fff; padding: 10px 20px; border-radius: 99px; font-size: 14px; font-weight: 600; transition: background 0.2s; }
+    .btn:hover { background: #2c2f38; }
+    .btn.alt { background: #fff; color: #17181f; border: 1px solid #cfcfc9; }
+    .btn.alt:hover { background: #efeee9; }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <span class="badge" data-a101-version>v1.1.0.0</span>
+    <h1 data-a101-name>Arabic101 Assistant</h1>
+    <div class="meta">Released on <span data-a101-date>2026-11-13</span></div>
+    
+    <p data-a101-desc>Arabic101 Dashboard Assistant: Supporting Arabic101 teachers and students with seamless class management, timetables, class alerts, calendar sync, and chat.</p>
+    
+    <h3 style="margin-top: 32px;">What's New in This Version</h3>
+    <ul data-a101-changelog>
+      <li>Loading latest release notes...</li>
+    </ul>
 
-    <nav>
-        <a href="index.html" class="logo">
-            <img src="https://raw.githubusercontent.com/a101-ext/Arabic101-Extension/main/Arabic101%20Chat%20%26%20Schedule/icon128.png" alt="Logo">
-            <span>Arabic<span style="color: var(--accent);">101</span> Assistant</span>
-        </a>
-        <div class="nav-links">
-            <a href="https://a101-ext.github.io/" class="back-to-portal">&larr; A101 Extensions Portal</a>
-            <a href="#features">Features</a>
-            <a href="guide.html">Documentation</a>
-            <a href="privacy.html">Privacy Policy</a>
-        </div>
-    </nav>
+    <div class="links">
+      <a class="btn" href="https://github.com/a101-ext/Arabic101-Extension" target="_blank">View on GitHub</a>
+      <a class="btn alt" href="./guide.html">User Guide</a>
+      <a class="btn alt" href="./privacy.html">Privacy Policy</a>
+    </div>
+  </div>
 
-    <header>
-        <span class="hero-badge">Version 1.0.7.1 is Now Live</span>
-        <h1>Never Miss an Arabic<span style="color: var(--accent);">101</span> Class</h1>
-        <p class="hero-desc">The all-in-one browser companion for Arabic101 teachers and students. Manage classes from the popup or resizable standalone window, receive proactive desktop class &amp; chat alerts, sync your schedule to Google Calendar, and chat in real time.</p>
-        <a href="https://chromewebstore.google.com/detail/arabic101-assistant/gcjclacdblhiddeanmdnhliflgplbmcc" class="cta-btn" target="_blank">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-            Add to Chrome
-        </a>
-    </header>
-
-    <section id="features">
-        <h2 class="section-title">Features Built for Education</h2>
-        <div class="grid">
-            <div class="card">
-                <div class="card-icon blue">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
-                </div>
-                <h3>Popup &amp; Standalone Dashboard</h3>
-                <p>View Today's &amp; Yesterday's sessions, inspect your Weekly Timetable with teacher availability highlights, browse the Notifications Archive with clickable invoice links, and switch between Light &amp; Dark themes.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                </div>
-                <h3>Proactive Class &amp; Chat Alerts</h3>
-                <p>Receive timely desktop notifications for upcoming classes (1h or 2h prior), urgent alerts when your teacher or student is waiting in the classroom, schedule cancellations, and incoming unread messages.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon blue">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path></svg>
-                </div>
-                <h3>Dual-Calendar Syncing</h3>
-                <p>Features an intelligent architecture that manages your active online class schedule while automatically migrating past sessions to a dedicated Logs sub-calendar to safely preserve your teaching or learning history.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 0 20.49 15"></path></svg>
-                </div>
-                <h3>Background Schedule Sync</h3>
-                <p>Never miss a session. The extension silently synchronizes your class schedule in the background, ensuring your Google Calendar is always up-to-date across your mobile and desktop devices.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon blue">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                </div>
-                <h3>Universal ICS Export</h3>
-                <p>Don't want to link your Google account? No problem! Use the offline "Export ICS" feature to generate a universal calendar file that you can manually import into Apple Calendar, Outlook, or any app for your class reminders.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                </div>
-                <h3>Bandwidth-Saving Chat</h3>
-                <p>Communicate via the built-in popup messenger or floating chat widget on wide screens, powered by a multi-tab leader election algorithm so only one active context polls the server at a time.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="modes">
-        <h2 class="section-title">Understanding Calendar Modes</h2>
-        <p style="text-align: center; color: var(--text-muted); max-width: 700px; margin: 0 auto;">The extension allows you to map your dashboard schedule to your personal calendar in two fundamentally different ways, depending on how you prefer to track your classes.</p>
-        
-        <div class="modes-container">
-            <div class="mode-box">
-                <h4>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                    Actual Mode (7 Days / 30 Days)
-                </h4>
-                <p>This mode synchronizes exact, date-specific class sessions. It reads the actual history and future projections of your classes day-by-day rather than assuming a perfect repeating template.</p>
-                <p><strong>Best for:</strong> Tracking real-time class status changes and maintaining an accurate historical log of your day-to-day teaching or learning progress.</p>
-                <div class="mode-tags">
-                    <span>Detects [Canceled]</span>
-                    <span>Detects [Absent]</span>
-                    <span>Logs exact class dates</span>
-                </div>
-            </div>
-            <div class="mode-box">
-                <h4>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><path d="M21 2v6h-6"></path><path d="M3 12a9 9 0 0 1 15-6.7L21 8"></path><path d="M3 22v-6h6"></path><path d="M21 12a9 9 0 0 1-15 6.7L3 16"></path></svg>
-                    Regular (Timetable) Mode
-                </h4>
-                <p>This mode synchronizes your permanent, general weekly schedule. It reads your base weekly layout and creates infinite, recurring weekly events in your calendar based on those rules.</p>
-                <p><strong>Best for:</strong> Getting a broad, unchanging overview of your general class availability and permanent weekly commitments.</p>
-                <div class="mode-tags">
-                    <span>Creates recurring rules</span>
-                    <span>General overview</span>
-                    <span>Infinite projection</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="guide" style="border-top: 1px solid var(--border);">
-        <h2 class="section-title">How to Get Started</h2>
-        <div class="steps">
-            <div class="step">
-                <div class="step-num">1</div>
-                <div class="step-content">
-                    <h4>Install and Open the Assistant</h4>
-                    <p>Download the extension from the Chrome Web Store and log in to your <a href="https://academy.arabic101.org/" target="_blank">Arabic101</a> dashboard. Click the <strong>Arabic101 Assistant icon</strong> in your Chrome toolbar to open the compact popup—or click the pop-out icon to launch a resizable standalone window. <em>(New student? <a href="https://academy.arabic101.org/tiersplans3/" target="_blank">Sign up for a class here</a> to unlock your dashboard).</em></p>
-                </div>
-            </div>
-            <div class="step">
-                <div class="step-num">2</div>
-                <div class="step-content">
-                    <h4>Choose Your Sync Method</h4>
-                    <p>In the extension header (or the dashboard Sync Schedule module), you have two options:</p>
-                    <ul style="margin-top: 8px; margin-left: 20px; color: var(--text-muted); font-size: 0.95rem;">
-                        <li style="margin-bottom: 6px;"><strong>Automatic (Google Account):</strong> Click the Google Calendar profile box and select <em>Sign in with Google</em>. During the consent popup, ensure you manually check the box granting permission to manage your calendar events.</li>
-                        <li><strong>Manual (Export ICS):</strong> Don't want to log in? Open <strong>Settings &rarr; Export ICS</strong> to download a universal calendar file that you can import anywhere.</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="step">
-                <div class="step-content" style="margin-left: 64px;">
-                    <p style="font-size: 0.9rem; color: #b91c1c; background: rgba(254, 226, 226, 0.1); padding: 12px; border-radius: 8px; border: 1px solid #fecaca; margin-top: -10px;">
-                        <strong>Important Note for Google Sync:</strong> Due to Google's strict Granular Consent policies, the calendar access checkbox is left unchecked by default. You must check it manually during login, otherwise the sync feature will fail.
-                    </p>
-                </div>
-            </div>
-            <div class="step">
-                <div class="step-num">3</div>
-                <div class="step-content">
-                    <h4>Customize Alerts, Modes &amp; Auto-Sync</h4>
-                    <p>Open the <strong>Settings</strong> tab to customize <strong>Class Reminders</strong> (1h or 2h prior), <strong>Classroom Waiting Alerts</strong>, <strong>Chat OS Notifications</strong>, your preferred <strong>Calendar Mode</strong> (Actual vs. Regular), and <strong>Auto-Sync in Background</strong>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 Arabic101 Extension Project. All rights reserved.</p>
-        <div class="footer-links">
-            <a href="https://a101-ext.github.io/">A101 Extensions Portal</a>
-            <a href="https://github.com/a101-ext/Arabic101-Extension" target="_blank">GitHub Repository</a>
-            <a href="https://a101-ext.github.io/Arabic101-Extension/privacy.html">Privacy Policy</a>
-            <a href="https://chromewebstore.google.com/detail/arabic101-assistant/gcjclacdblhiddeanmdnhliflgplbmcc" target="_blank">Chrome Web Store</a>
-        </div>
-    </footer>
-<script src="./version-loader.js" defer></script>
+  <script src="./version-loader.js" defer></script>
 </body>
 </html>

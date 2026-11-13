@@ -1,10 +1,9 @@
 # Arabic101 Assistant
 
 ![Version](https://img.shields.io/badge/version-1.1.0.0-blue.svg)
-![Manifest](https://img.shields.io/badge/Manifest-V3-orange.svg)
 ![Platform](https://img.shields.io/badge/platform-Chrome-green.svg)
 
-The **Arabic101 Assistant** is an all-in-one Google Chrome extension designed to streamline the experience for teachers and students on the Arabic101 Dashboard. It brings your classes, weekly timetable, notifications archive, realtime chat, proactive desktop reminders, and Google Calendar synchronization directly into your browser toolbar or a resizable standalone window.
+The **Arabic101 Assistant** is a powerful, lightweight Google Chrome extension designed to enhance the experience for teachers and students on the Arabic101 Dashboard. It seamlessly bridges your dashboard schedule with Google Calendar, provides a full popup & standalone desktop dashboard, and includes a highly optimized, cross-tab realtime chat interface.
 
 [**Download from Chrome Web Store**](https://chromewebstore.google.com/detail/arabic101-assistant/gcjclacdblhiddeanmdnhliflgplbmcc) | [**Visit Official Documentation**](https://a101-ext.github.io/Arabic101-Extension/index.html)
 
@@ -12,33 +11,38 @@ The **Arabic101 Assistant** is an all-in-one Google Chrome extension designed to
 
 ## 🌟 Key Features
 
-### 🖥️ All-in-One Popup & Resizable Standalone Companion
-* **Unified Dashboard View:** Access Today's & Yesterday's sessions, join classrooms with one click, inspect your Weekly Timetable Matrix (with teacher availability highlights), and browse your Notifications Archive with pagination and clickable invoice links.
-* **Role-Aware Views:** Automatically adapts to **Teacher** (My Students, Lesson History, Availability Management, Support & HR Desk) and **Student** (My Plan, Enrolled Courses, Billing, Family Discount, E-Syllabus) accounts.
-* **Responsive & Theme-Adaptive:** Switch seamlessly between compact popup mode, a resizable standalone desktop window, and **Light / Dark** themes.
+### 🖥️ Dual Companion Dashboard (Popup & Standalone Window)
+*   **Compact Popup & Resizable Standalone Window:** Open a quick mobile-style popup from the toolbar or pop out into a full-page Standalone Desktop Window with a sticky header bar, full sidebar navigation, Light/Dark theme support, and floating chat widget.
+*   **Persistent Route State:** Automatically remembers your last visited tab across reloads and popups, with a one-click logo refresh back to Home.
 
-### 🔔 Proactive Class & Chat Alerts
-* **Smart Class Reminders:** Receive native desktop alerts **1 hour** or **2 hours** before scheduled classes, urgent notifications when a counterpart is waiting in the classroom (with direct *Enter Class* action), and cancellation notices.
-* **Background Monitoring:** Powered by Manifest V3 `alarms` and a lightweight `offscreen` parser so alerts arrive even when the dashboard tab is closed.
+### 📅 Advanced Google Calendar Synchronization
+*   **Dual-Calendar Architecture:** Automatically creates a primary `Arabic101 Academy Schedule` calendar for active classes and an `Arabic101 Academy Schedule - Logs` calendar to safely archive your past sessions.
+*   **Smart Fallback Routing:** Instantly detects if a Teacher or Student profile is inactive and seamlessly switches to the active role without throwing errors.
+*   **Background Auto-Sync:** Keeps your Google Calendar perfectly updated in the background (every 5 minutes on timetable pages, and every hour on other dashboard pages).
+*   **Universal Offline Export:** Download your schedule as a universal `.ics` file with a single click, allowing you to import your classes into Apple Calendar, Microsoft Outlook, or Google Calendar manually—no account linking required!
+*   **Clean Status Tags:** Adds clear prefixes to event titles like `[Ongoing]`, `[Attended]`, `[Canceled]`, and `[Absent]` to help you track your schedule at a glance.
 
-### 📅 Advanced Google Calendar Synchronization & ICS Export
-* **Dual-Calendar Architecture:** Automatically creates a primary `Arabic101 Academy Schedule` calendar for active classes and an `Arabic101 Academy Schedule - Logs` calendar to safely archive past sessions.
-* **Background Auto-Sync:** Keeps your Google Calendar updated silently in the background when enabled.
-* **Universal Offline Export:** Download your schedule as a universal `.ics` file with a single click for Apple Calendar, Microsoft Outlook, or manual import—no Google account linking required.
-* **Clean Status Tags:** Adds clear prefixes to event titles like `[Ongoing]`, `[Attended]`, `[Canceled]`, and `[Absent]`.
+### 📋 Inline Class Details, Plan Comparison & Teacher Tools
+*   **Inline Class Reports & Attachments:** Expand lesson remarks, summaries, homework, notes, and image/PDF attachments directly inside class cards on Home and lesson history accordions without opening extra tabs.
+*   **Interactive My Plan & Perks Matrix:** View class formats (**1-on-1** vs. **Group**) and click any Academy plan card (**Premium**, **Pro**, **Standard**, **Halaqah**) for a 50:50 side-by-side comparison.
+*   **Teacher End Class & Availability:** Submit end-of-class reports with image or PDF attachments (with automatic draft recovery), view unclosed yesterday sessions, and manage weekly teaching availability slots.
 
-### 💬 Bandwidth-Saving Realtime Chat
-* **Integrated & Floating Messenger:** Chat directly inside the popup tab or via the floating chat dock on wide desktop screens.
-* **Multi-Tab Leader Election:** Only ONE active context polls the chat server at a time, preventing duplicate requests, duplicate audio chimes, and unnecessary bandwidth usage.
+### 💬 Optimized Realtime Chat Widget & Proactive Alerts
+*   **Multi-Tab Leader Election:** Uses a highly efficient tab-election algorithm. Only one active tab connects to the server, while other tabs mirror the chat silently—saving significant network bandwidth and CPU usage.
+*   **Smart Notifications:** Features built-in browser audio alerts and OS-level desktop notifications for upcoming class reminders, classroom waiting alerts, schedule adjustments, and new chat messages when the browser is minimized.
 
 ---
 
 ## ⚙️ Understanding Calendar Modes
 
-* **Actual Mode (7 Days or 30 Days):**
-  Synchronizes exact, date-specific class sessions day-by-day, accurately reflecting real-time status updates (`[Canceled]`, `[Absent]`, `[Attended]`, `[Ongoing]`).
-* **Regular (Timetable) Mode:**
-  Synchronizes your permanent weekly schedule template as infinite **recurring weekly events** in Google Calendar.
+The extension allows you to sync your schedule in two fundamentally different ways based on your needs:
+
+*   **Actual Mode (7 Days or 30 Days):** 
+    This mode synchronizes exact, date-specific class sessions. It reads the actual history and future projections of your classes day-by-day. 
+    *   *Best for:* Tracking real-time status changes (e.g., if a specific class is marked as `[Canceled]`, `[Absent]`, or `[Attended]` on a particular date) and maintaining an accurate historical log. 
+*   **Regular (Timetable) Mode:** 
+    This mode synchronizes your permanent, general weekly schedule template. It reads your base weekly layout and creates infinite **recurring weekly events** in your calendar. 
+    *   *Best for:* Getting a broad, unchanging overview of your general availability and permanent weekly commitments.
 
 ---
 
@@ -46,10 +50,10 @@ The **Arabic101 Assistant** is an all-in-one Google Chrome extension designed to
 
 1. Install the extension from the [Chrome Web Store](https://chromewebstore.google.com/detail/arabic101-assistant/gcjclacdblhiddeanmdnhliflgplbmcc).
 2. Log in to your [Arabic101](https://academy.arabic101.org/) Dashboard.
-3. Click the **Arabic101 Assistant** icon in your Chrome toolbar to open the popup (or click the pop-out button for a standalone window).
-4. **Choose your Calendar Sync Method:**
-   * **Automatic (Google Calendar):** Click the Google Calendar profile box in the header and choose **Sign in with Google**. Ensure you manually check the box granting calendar access during the Google consent step, then select your Calendar Mode and click **Sync Now** or enable **Auto-Sync in Background**.
-   * **Manual (Export ICS):** Open **Settings**, select your Calendar Mode, and click **Export ICS** to download your `.ics` calendar file.
+3. Click the **Arabic101 Assistant** icon in your Chrome toolbar (or click the Pop-out button for a standalone desktop window).
+4. **Choose your Sync Method:**
+   * **Automatic (Google Calendar):** Click **Sign in with Google** and sign in. Ensure you manually check the box to grant calendar access during the authorization step. Select your preferred Calendar Mode in **Settings**, then click **Sync Now** or enable **Auto-Sync in Background**.
+   * **Manual (Export ICS):** Simply select your Calendar Mode and click **Export ICS**. The system will download your schedule as a file that you can manually import into any calendar app.
 
 ## 🔒 Privacy & Security
-Arabic101 Assistant follows strict Manifest V3 minimum-permission principles (`identity`, `storage`, `alarms`, `offscreen`, `notifications`) without requesting the `cookies` permission. No personal data is ever collected or sent to external third-party servers. See our [Privacy Policy](https://a101-ext.github.io/Arabic101-Extension/privacy.html) for full details.
+The Arabic101 Assistant requires minimal permissions. It only reads the schedule, class report, and chat data explicitly displayed on your Arabic101 dashboard to facilitate the calendar sync, dashboard companion, and chat features. Please refer to our official [Privacy Policy](https://a101-ext.github.io/Arabic101-Extension/privacy.html) for detailed information.

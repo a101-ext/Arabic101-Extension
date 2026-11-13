@@ -1,5 +1,5 @@
 (async function loadArabic101Version() {
-  const VERSION_JSON_URL = 'https://a101-ext.github.io/version.json';
+  const VERSION_JSON_URL = 'https://a101-ext.github.io/Arabic101-Extension/version.json';
   const MANIFEST_FALLBACK_URL =
     'https://raw.githubusercontent.com/a101-ext/Arabic101-Extension/main/Arabic101%20Chat%20%26%20Schedule/manifest.json';
 

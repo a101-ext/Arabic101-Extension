@@ -1,227 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/a101-ext/Arabic101-Extension/main/Arabic101%20Chat%20%26%20Schedule/icon128.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Guide - Arabic101 Assistant</title>
-    <meta name="description" content="Complete documentation and user guide for the Arabic101 Assistant Chrome Extension v1.0.7.1.">
-    <style>
-        :root {
-            /* LIGHT MODE */
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --primary-bg: #eff6ff;
-            --accent: #eab308;
-            --bg: #f8fafc;
-            --bg-alt: #ffffff;
-            --card-bg: #ffffff;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            :root {
-                /* DARK MODE */
-                --primary: #3b82f6;
-                --primary-hover: #60a5fa;
-                --primary-bg: rgba(59, 130, 246, 0.15);
-                --accent: #facc15;
-                --bg: #121826;
-                --bg-alt: #192132;
-                --card-bg: #1e2536;
-                --text-main: #f8fafc;
-                --text-muted: #94a3b8;
-                --border: #334155;
-            }
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text-main); background-color: var(--bg); transition: background-color 0.3s, color 0.3s; }
-        a { text-decoration: none; color: var(--primary); transition: color 0.2s; font-weight: 500; }
-        a:hover { color: var(--primary-hover); text-decoration: underline; }
-        
-        /* Navigation */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 5%; background: var(--bg-alt); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; transition: background-color 0.3s; }
-        .logo { text-decoration: none !important; font-size: 1.3rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 10px; letter-spacing: -0.5px; transition: opacity 0.2s; }
-        .logo:hover { opacity: 0.85; color: var(--text-main); }
-        .logo img { width: 32px; height: 32px; border-radius: 8px; object-fit: cover; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .nav-links { display: flex; gap: 1.5rem; font-weight: 500; font-size: 0.95rem; align-items: center; }
-        .back-to-home { font-size: 0.9rem; color: var(--text-main); border: 1px solid var(--border); padding: 6px 14px; border-radius: 20px; transition: all 0.2s; text-decoration: none !important; }
-        .back-to-home:hover { background: var(--bg); color: var(--text-main); }
-
-        /* Header */
-        header { padding: 4rem 5%; text-align: center; background: linear-gradient(135deg, var(--bg-alt) 0%, var(--bg) 100%); border-bottom: 1px solid var(--border); }
-        h1 { font-size: 2.5rem; color: var(--text-main); line-height: 1.2; margin-bottom: 0.5rem; }
-        .subtitle { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
-
-        /* Content */
-        main { padding: 3rem 5%; max-width: 850px; margin: 0 auto; }
-        
-        /* Card-based sections */
-        section { 
-            background: var(--card-bg); 
-            border: 1px solid var(--border); 
-            border-radius: 16px; 
-            padding: 2.5rem; 
-            margin-bottom: 2rem; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            transition: box-shadow 0.3s;
-        }
-        section:hover { box-shadow: 0 8px 15px rgba(0,0,0,0.05); }
-
-        h2 { font-size: 1.5rem; color: var(--text-main); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 10px; }
-        h3 { font-size: 1.15rem; color: var(--text-main); margin-top: 1.5rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 8px; }
-        p { margin-bottom: 1rem; color: var(--text-main); }
-        ul, ol { margin-bottom: 1.5rem; padding-left: 1.5rem; color: var(--text-main); }
-        li { margin-bottom: 0.5rem; }
-        li::marker { color: var(--primary); font-weight: bold; }
-        strong { color: var(--text-main); font-weight: 600; }
-
-        .highlight-box { background: var(--bg); border-left: 4px solid var(--primary); padding: 1.25rem; border-radius: 0 8px 8px 0; margin-top: 1.5rem; margin-bottom: 1rem; }
-        .highlight-box.warning { border-left-color: #ef4444; background: rgba(239, 68, 68, 0.05); }
-        .highlight-box.warning p { color: #ef4444; font-weight: 600; margin: 0; }
-        .highlight-box p { margin: 0; color: var(--text-main); }
-
-        .tag { display: inline-block; background: var(--border); color: var(--text-main); padding: 2px 8px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; margin: 0 4px; }
-        code { background: var(--border); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 0.9em; }
-
-        /* Footer */
-        footer { border-top: 1px solid var(--border); padding: 3rem 5%; text-align: center; color: var(--text-muted); background: var(--bg-alt); }
-        .footer-links { margin-top: 1rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            .nav-links { display: none; }
-            section { padding: 1.5rem; }
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>User Guide - Arabic101 Assistant v1.1.0.0</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; background: #151821; color: #f0f6fc; margin: 0; padding: 0; line-height: 1.6; }
+    header { text-align: center; padding: 60px 20px 40px; border-bottom: 1px solid #2e3548; }
+    h1 { margin: 0 0 10px; font-size: 32px; color: #fff; }
+    .subtitle { color: #8b949e; max-width: 600px; margin: 0 auto; }
+    .container { max-width: 760px; margin: 40px auto; background: #202534; border: 1px solid #2e3548; border-radius: 16px; padding: 32px; }
+    h2 { color: #f59e0b; border-bottom: 1px solid #2e3548; padding-bottom: 8px; margin-top: 0; }
+    p, li { color: #cbd5e1; }
+    a { color: #60a5fa; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .nav-top { position: absolute; top: 20px; right: 20px; }
+    .btn-back { color: #fff; font-size: 13px; font-weight: 600; text-decoration: none; padding: 6px 12px; background: rgba(255,255,255,0.1); border-radius: 99px; }
+    .btn-back:hover { background: rgba(255,255,255,0.2); text-decoration: none; }
+  </style>
 </head>
 <body>
+  <div class="nav-top">
+    <a href="./index.html" class="btn-back">← Back to Home</a>
+  </div>
 
-    <nav>
-        <a href="index.html" class="logo">
-            <img src="https://raw.githubusercontent.com/a101-ext/Arabic101-Extension/main/Arabic101%20Chat%20%26%20Schedule/icon128.png" alt="Logo">
-            <span>Arabic<span style="color: var(--accent);">101</span> Assistant</span>
-        </a>
-        <div class="nav-links">
-            <a href="index.html" class="back-to-home">&larr; Back to Home</a>
-        </div>
-    </nav>
+  <header>
+    <h1>📖 Arabic101 Assistant User Guide</h1>
+    <p class="subtitle">Everything you need to know about setting up, syncing, and maximizing your Arabic101 Extension <span data-a101-version>v1.1.0.0</span> workflow.</p>
+  </header>
 
-    <header>
-        <h1>📖 Arabic101 Assistant User Guide</h1>
-        <p class="subtitle">Everything you need to know about setting up, syncing, and maximizing your Arabic101 Extension v1.0.7.1 workflow.</p>
-    </header>
+  <div class="container">
+    <h2>1. Installation & Companion Modes</h2>
+    <ol>
+      <li>Install the extension from the Chrome Web Store.</li>
+      <li>Log in to your <strong>Arabic101 Dashboard</strong>.</li>
+      <li>Click the <strong>Arabic101 Assistant</strong> icon in your Chrome toolbar to open the compact mobile-style popup—or click the <strong>Pop-out icon</strong> in the header to launch a resizable <strong>Standalone Desktop Window</strong> with a full sidebar and floating chat widget.</li>
+      <li>You can also switch between <strong>Light Mode</strong> and <strong>Dark Mode</strong> anytime using the theme button in the header.</li>
+    </ol>
 
-    <main>
-        <section id="installation">
-            <h2>🚀 1. Installation &amp; Companion Modes</h2>
-            <ol>
-                <li>Install the extension from the <a href="https://chromewebstore.google.com/detail/arabic101-assistant/gcjclacdblhiddeanmdnhliflgplbmcc" target="_blank">Chrome Web Store</a>.</li>
-                <li style="margin-bottom: 12px;">Log in to your <a href="https://academy.arabic101.org/" target="_blank">Arabic101</a> Dashboard. 
-                    <br>
-                    <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: normal;">(Don't have an account yet? <a href="https://academy.arabic101.org/tiersplans3/" target="_blank">Sign up for a class here</a> to unlock your dashboard).</span>
-                </li>
-                <li>Click the <strong>Arabic101 Assistant icon</strong> in your Chrome toolbar to open the compact mobile-style popup—or click the <strong>Pop-out icon</strong> in the header to launch a resizable <strong>Standalone Desktop Window</strong> with a full sidebar and floating chat widget.</li>
-                <li>You can also switch between <strong>Light Mode</strong> and <strong>Dark Mode</strong> anytime using the theme button in the header.</li>
-            </ol>
-        </section>
+    <h2 style="margin-top: 40px;">2. Latest Features (<span data-a101-version>v1.1.0.0</span>)</h2>
+    <ul data-a101-changelog>
+      <li>Loading features...</li>
+    </ul>
+  </div>
 
-        <section id="google-sync">
-            <h2>📅 2. Syncing to Google Calendar</h2>
-            <p>To automatically receive class reminders on your phone or desktop calendar, connect your Google Calendar account:</p>
-            <ol>
-                <li>Click the <strong>Google Calendar profile box</strong> in the extension header (or <strong>Connect Google</strong> on the web dashboard) and select <strong>Sign in with Google</strong>.</li>
-                <li>Choose the Google Account where you want your class schedule to appear.</li>
-                <li><strong>Crucial Step:</strong> You will see a permission screen asking to manage your calendars. <strong>You MUST manually check the box</strong> next to <em>"See, edit, share, and permanently delete all the calendars you can access using Google Calendar."</em></li>
-                <li>Click Continue. Your connected email address will appear in the header, and the Google Calendar controls will unlock inside the <strong>Settings</strong> tab.</li>
-            </ol>
-            
-            <div class="highlight-box warning">
-                <p>⚠️ Why manually check the box? Due to Google's strict privacy rules (Granular Consent), calendar permissions are left unchecked by default. If you click Continue without checking the box, the sync will fail to create your Arabic101 calendar.</p>
-            </div>
-        </section>
+  <div style="text-align: center; color: #8b949e; padding: 20px; font-size: 12px;">
+    Last updated: <span data-a101-date>2026-11-13</span>
+  </div>
 
-        <section id="modes">
-            <h2>⚙️ 3. Understanding Calendar Modes</h2>
-            <p>Open the <strong>Settings</strong> tab in the extension (or click the Gear Icon on the dashboard widget) to choose how your schedule is mapped to your calendar:</p>
-            
-            <h3>🎯 Actual Mode (7 Days or 30 Days)</h3>
-            <p>This mode reads the literal history and future dates of your classes day-by-day. It is highly accurate for real-time changes.</p>
-            <ul>
-                <li>It accurately tags past and current classes with statuses like <span class="tag">[Canceled]</span>, <span class="tag">[Absent]</span>, <span class="tag">[Attended]</span>, or <span class="tag">[Ongoing]</span>.</li>
-                <li><strong>Best for:</strong> Teachers and students who want a precise historical log of their day-to-day class attendance.</li>
-            </ul>
-
-            <h3>🔁 Regular (Timetable) Mode</h3>
-            <p>This mode reads your permanent weekly base schedule and creates infinite "recurring weekly events" in Google Calendar.</p>
-            <ul>
-                <li>It provides a clean, unchanging overview of your weekly commitments indefinitely into the future.</li>
-                <li><strong>Best for:</strong> Users who want to see their general availability without worrying about specific date fluctuations.</li>
-            </ul>
-        </section>
-
-        <section id="auto-sync">
-            <h2>🔄 4. Auto-Sync vs Manual Sync</h2>
-            <p>Once connected to Google, you have two ways to keep your calendar updated:</p>
-            <ul>
-                <li><strong>Auto-Sync in Background:</strong> Toggle this switch ON in <strong>Settings</strong>. The extension will silently update your Google Calendar in the background (every 15 minutes via background service worker, every 5 minutes when viewing the Timetable page, or every 60 minutes on other dashboard pages).</li>
-                <li><strong>Manual Synchronization:</strong> Click <strong>Sync Now</strong> in the profile menu or in <strong>Settings &rarr; Google Calendar</strong> to push your latest schedule immediately.</li>
-            </ul>
-        </section>
-
-        <section id="export">
-            <h2>💾 5. Offline Mode (Export ICS)</h2>
-            <p>If you prefer not to connect your Google Account, or if you use Apple Calendar or Microsoft Outlook, you can use the offline export feature:</p>
-            <ol>
-                <li>Open the <strong>Settings</strong> tab and select your desired <strong>Calendar Mode</strong>.</li>
-                <li>Click <strong>Export ICS</strong> under <em>Schedule Settings &rarr; General</em>.</li>
-                <li>A file named <code>Arabic101_actual_7_Date.ics</code> (or matching your chosen mode) will download to your computer.</li>
-                <li>Open this file with your preferred calendar application to import your classes.</li>
-            </ol>
-        </section>
-
-        <section id="alerts">
-            <h2>🔔 6. Proactive Class Alerts &amp; Notifications Archive</h2>
-            <p>Arabic101 Assistant actively monitors your upcoming sessions and dashboard alerts even when the portal tab is closed:</p>
-            <ul>
-                <li><strong>Class Reminders:</strong> Receive desktop notifications <strong>1 hour</strong> or <strong>2 hours</strong> prior to your scheduled class.</li>
-                <li><strong>Classroom Waiting Alert:</strong> Get an urgent desktop banner with a direct <em>Enter Class</em> button as soon as your teacher or student enters the classroom.</li>
-                <li><strong>Schedule Updates:</strong> Receive immediate notices if an upcoming session is canceled or adjusted.</li>
-                <li><strong>Notifications Archive:</strong> Open the <strong>Notifications</strong> tab (bell icon) inside the popup to browse paginated alert history, click direct invoice payment links, or mark all alerts as read.</li>
-            </ul>
-        </section>
-
-        <section id="chat-teacher">
-            <h2>💬 7. Realtime Chat &amp; Teacher Workflow Tools</h2>
-            <ul>
-                <li><strong>Popup Messenger &amp; Floating Widget:</strong> Reply to messages directly from the <strong>Chat / Messages</strong> tab in popup view, or use the floating chat dock in the bottom-right corner on wide desktop screens.</li>
-                <li><strong>Bandwidth Saver:</strong> Multi-tab leader election ensures only ONE active browser context polls the chat server at a time, saving RAM and network bandwidth.</li>
-                <li><strong>Teacher Classroom Actions:</strong> Teachers can view unclosed <em>Yesterday's Sessions</em>, send classroom reminders, mark waiting classes as <em>Running</em>, submit <em>End Class</em> reports (with automatic draft recovery), and manage weekly <em>Availability</em> slots directly from the extension.</li>
-            </ul>
-        </section>
-
-        <section id="troubleshooting">
-            <h2>🛠️ 8. Troubleshooting &amp; Reset</h2>
-            <p>If the extension behaves unexpectedly or Google Calendar sync fails:</p>
-            <ul>
-                <li><strong>Clear &amp; Re-Sync Calendar:</strong> Open <strong>Settings &rarr; Delete Arabic101 GCal</strong> to safely remove the active <code>Arabic101 Academy Schedule</code> sub-calendar from your Google account and start fresh. <em>Note: Your past classes archived in the Logs calendar remain preserved!</em></li>
-                <li><strong>Re-authorize Google Permissions:</strong> Click your profile box in the header, choose <strong>Sign out Google</strong>, and sign in again—making sure to manually check the Google Calendar access box.</li>
-                <li><strong>Refresh Assistant:</strong> Click the <strong>Arabic101 logo</strong> in the top-left header (or drawer header) at any time to refresh the extension view.</li>
-            </ul>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 Arabic101 Extension Project. All rights reserved.</p>
-        <div class="footer-links">
-            <a href="index.html">Back to Home</a>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="https://github.com/a101-ext/Arabic101-Extension" target="_blank">GitHub Repository</a>
-        </div>
-    </footer>
-<script src="./version-loader.js" defer></script>
+  <script src="./version-loader.js" defer></script>
 </body>
 </html>

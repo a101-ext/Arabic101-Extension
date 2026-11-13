@@ -1,16 +1,17 @@
 {
   "name": "Arabic101 Assistant",
   "version": "1.1.0.0",
+  "lastUpdated": "November 2026",
   "releaseDate": "2026-11-13",
-  "description": "Arabic101 Dashboard Assistant: Supporting Arabic101 teachers and students with seamless class management, timetables, class alerts, calendar sync, and chat.",
   "repoUrl": "https://github.com/a101-ext/Arabic101-Extension",
   "guideUrl": "https://a101-ext.github.io/Arabic101-Extension/guide.html",
   "privacyUrl": "https://a101-ext.github.io/Arabic101-Extension/privacy.html",
   "changelog": [
-    "Full-page desktop layout with sticky top navigation bar and Back-to-Top button",
-    "Interactive 50:50 My Plan tier comparison with tier-specific color themes",
-    "Inline class report details accordion with image & PDF attachment previews",
-    "Persistent last-visited route sync across popup and standalone windows",
-    "Single Source of Truth versioning system integrated across all documentation pages"
+    "Dual Companion Modes: Compact toolbar popup and resizable Standalone Desktop Window with full sidebar navigation and Light/Dark theme switcher.",
+    "Full-Page Desktop Layout: Sticky top header bar, floating Back-to-Top button, and automatic route persistence across reloads.",
+    "Inline Class Details & Attachments: Expand lesson summaries, homework, notes, and teacher/student image & PDF attachments directly inside class cards and lesson history.",
+    "Interactive My Plan Comparison: View 1-on-1 vs. Group class formats and click any Academy plan card (Premium, Pro, Standard, Halaqah) for a 50:50 side-by-side perk comparison.",
+    "Teacher Workflow Tools: End-of-class report modal with image & PDF uploads (plus auto-draft recovery), yesterday unclosed session alerts, and weekly availability management.",
+    "Proactive Desktop & Audio Alerts: Class countdown reminders, classroom waiting alerts, schedule change notices, and multi-tab leader-elected chat notifications."
   ]
 }
